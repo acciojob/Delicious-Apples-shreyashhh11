@@ -1,1 +1,300 @@
-/* your code here */
+/* --- Global Styles --- */
+
+/* Import the Inter font (or similar clean sans-serif) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap');
+
+body {
+    /* The vibrant green background color from the image */
+    background-color: #00e87d;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    margin: 0;
+}
+
+/* --- Main Product Card Container --- */
+.product {
+    display: flex;
+    flex-direction: column; /* Default to column for mobile */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); /* Deep shadow lift */
+    max-width: 1000px;
+    width: 95%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Media query for desktop/tablet layout */
+@media (min-width: 768px) {
+    .product {
+        flex-direction: row; /* Switch to row for desktop */
+        padding: 40px;
+    }
+}
+
+/* --- 1. Image and Photo Album Section --- */
+
+.product__photo {
+    /* Ensures the photo section can contain the absolutely positioned photo-container */
+    position: relative;
+    /* On mobile, take up full width. On desktop, allocate space */
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .product__photo {
+        /* Allocate about 45% of the card width for the image section */
+        flex-basis: 45%;
+        margin-right: 50px;
+        margin-bottom: 0;
+    }
+}
+
+.photo-container {
+    /* This creates the floating, offset panel effect */
+    position: relative;
+    background-color: #38a169; /* Green background for the main image area */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+    
+    /* Offset effect for desktop */
+    transform: translate(-30px, -30px);
+    width: calc(100% + 60px); /* Adjust width to account for offset */
+    
+    /* Adjust offset for mobile */
+    margin-bottom: 10px;
+}
+
+@media (max-width: 767px) {
+    .photo-container {
+        transform: none;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.photo-main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.photo-main img {
+    /* Image styling to match the visual depth and scale */
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: scale(1.05); /* Slightly zoomed in */
+    /* Custom drop shadow for the image content itself (not the container) */
+    filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.4));
+}
+
+/* Icons (Share and Heart) */
+.controls {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 20;
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.controls i {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Thumbnails */
+.photo-album {
+    /* Adjust position relative to the main card layout, not the offset container */
+    position: relative; 
+    z-index: 20; 
+    width: 100%;
+    margin-top: -30px; /* Pull up closer to the main image */
+}
+
+@media (min-width: 768px) {
+    .photo-album {
+        /* Align thumbnails below the image on desktop */
+        margin-top: 20px;
+        padding-left: 10px; /* Offset alignment correction */
+    }
+}
+
+.photo-album ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.photo-album li {
+    cursor: pointer;
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 2px;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.photo-album li:first-child {
+    /* Active thumbnail border */
+    border-color: #38a169;
+}
+
+.photo-album img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* --- 2. Product Information Section --- */
+
+.product__info {
+    width: 100%;
+    padding: 0 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .product__info {
+        flex-basis: 55%;
+        padding: 0;
+    }
+}
+
+.title h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #333;
+    line-height: 1.1;
+    margin: 0 0 5px 0;
+}
+
+.title span {
+    font-size: 0.7rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Price Display */
+.price {
+    color: #e53e3e; /* Deep red color */
+    display: flex;
+    align-items: baseline;
+    margin-top: 10px;
+}
+
+.price span {
+    font-size: 4.5rem; /* Large, bold number */
+    font-weight: 900;
+    margin-left: 5px;
+}
+
+.price:before {
+    content: "R$";
+    font-size: 1.5rem;
+    font-weight: 700;
+    align-self: flex-start;
+    margin-right: 5px;
+    padding-top: 10px; /* Align with the top of the large number */
+}
+
+/* Color Variant Selector (using images, but styled like colors) */
+.variant h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.variant ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+.variant li {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.variant li:first-child {
+    /* Highlight the first color as active (Green) */
+    border-color: #38a169; 
+    box-shadow: 0 0 0 4px rgba(56, 161, 105, 0.3);
+}
+
+.variant li img {
+    /* Hide the actual image content, we'll use background color/texture for realistic color selection */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- Description / Benefits Section --- */
+.description {
+    /* This section is where the Benefits list goes (though content is missing in HTML) */
+    padding-top: 10px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.description h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.description ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Placeholder for Add to Cart button (Missing in provided HTML, but essential for the design) */
+.add-to-cart {
+    width: 100%;
+    background-color: #e53e3e; /* Deep red button */
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(229, 62, 62, 0.3);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    margin-top: 30px;
+}
+
+.add-to-cart:hover {
+    background-color: #c53030;
+    transform: translateY(-2px);
+}
